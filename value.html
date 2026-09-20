@@ -33,7 +33,7 @@
             margin-bottom:28px;
         }
         .title-logo{
-            width:48px;
+            width:28px;
             height:auto;
         }
         h1{
@@ -50,7 +50,6 @@
         .tab{
             padding:10px 22px;
             background:#fff;
-            border:1px solid #111;
             cursor:pointer;
             transition:0.2s;
         }
@@ -61,7 +60,7 @@
         .tab-content{display:none;}
         .tab-content.show{display:block;}
         .rank-card{
-            border:1px solid #222;
+            border:1px solid #ddd;
         }
         .rank-header{
             display:grid;
@@ -134,50 +133,50 @@ tabs.forEach(t=>{
 
 const playerData = [
     {name:"田梓煜", desc:"7尔西", score:0.3},
-    {name:"陈润东", desc:"7尔西", score:1.8},
+    {name:"陈润东", desc:"7尔西", score:1.7},
     {name:"吴睿祺", desc:"7尔西", score:0.7},
     {name:"宿云轩", desc:"7尔西", score:0.1},
-    {name:"李胥霖", desc:"7尔西", score:1.7},
+    {name:"李胥霖", desc:"7尔西", score:1.6},
     {name:"张小弛", desc:"7尔西", score:0.3},
-    {name:"徐文博", desc:"7尔西", score:1.7},
-    {name:"聂子轩", desc:"7尔西", score:1.3},
-    {name:"梅一涵", desc:"7尔西", score:1.2},
+    {name:"徐文博", desc:"7尔西", score:1.6},
+    {name:"聂子轩", desc:"7尔西", score:1.2},
+    {name:"梅一涵", desc:"7尔西", score:1.1},
     {name:"孙奕轩", desc:"7尔西", score:0.6},
-    {name:"王昊源", desc:"7尔西", score:0.5},
+    {name:"王昊源", desc:"7尔西", score:0.6},
     {name:"郭梓彤", desc:"7尔西", score:0.6},
     {name:"陈鹏飞", desc:"上海花生", score:1.1},
     {name:"邹逸航", desc:"上海花生", score:0.5},
-    {name:"郭奕辰", desc:"上海花生", score:0.5},
+    {name:"郭奕辰", desc:"上海花生", score:0.7},
     {name:"李苏越", desc:"上海花生", score:0.7},
-    {name:"陆润希", desc:"上海花生", score:1.3},
+    {name:"陆润希", desc:"上海花生", score:1.2},
     {name:"谈博", desc:"上海花生", score:0.8},
     {name:"王彦哲", desc:"上海花生", score:0.4},
     {name:"张峻昊", desc:"上海花生", score:0.4},
-    {name:"赵弘毅", desc:"上海花生", score:1.1},
+    {name:"赵弘毅", desc:"上海花生", score:1.2},
     {name:"谢思远", desc:"上海花生", score:0.8},
-    {name:"孙展韬", desc:"上海花生", score:0.7},
-    {name:"邹奕涵", desc:"上海花生", score:0.7},
-    {name:"袁正", desc:"五花果福瑞", score:1.2},
+    {name:"孙展韬", desc:"上海花生", score:0.6},
+    {name:"邬奕涵", desc:"上海花生", score:0.7},
+    {name:"袁正", desc:"五花果福瑞", score:1.1},
     {name:"李奕宸", desc:"五花果福瑞", score:0.4},
     {name:"施奕玮", desc:"五花果福瑞", score:0.9},
     {name:"赵启轩", desc:"五花果福瑞", score:0.4},
     {name:"郭圣熙", desc:"五花果福瑞", score:0.6},
     {name:"刘亦范", desc:"五花果福瑞", score:0.5},
-    {name:"沈瑞弘", desc:"五花果福瑞", score:0.5},
+    {name:"沈瑞弘", desc:"五花果福瑞", score:0.3},
     {name:"周湫哲", desc:"五花果福瑞", score:1.1},
     {name:"张睿劼", desc:"五花果福瑞", score:1.6},
     {name:"陶金鑫", desc:"五花果福瑞", score:0.3},
     {name:"解冰果", desc:"五花果福瑞", score:0.7},
     {name:"茅鹤凡", desc:"五花果福瑞", score:0.3},
-    {name:"王睿涵", desc:"上海曼巴", score:0.7},
+    {name:"王睿涵", desc:"上海曼巴", score:0.8},
     {name:"奚彦邦", desc:"上海曼巴", score:0.4},
     {name:"莫杨宸瀚", desc:"上海曼巴", score:0.6},
     {name:"陈奕璋", desc:"上海曼巴", score:0.9},
     {name:"章扬", desc:"上海曼巴", score:0.4},
     {name:"杨耀凯", desc:"上海曼巴", score:0.8},
     {name:"戎耀", desc:"上海曼巴", score:1.2},
-    {name:"周绍宽", desc:"上海曼巴", score:1.1},
-    {name:"马正源", desc:"上海曼巴", score:0.8},
+    {name:"周绍宽", desc:"上海曼巴", score:1.0},
+    {name:"马正源", desc:"上海曼巴", score:0.7},
     {name:"林子煜", desc:"上海曼巴", score:1.1},
     {name:"孔艺翰", desc:"上海曼巴", score:1.2},
     {name:"刘昊廷", desc:"上海曼巴", score:0.6},
@@ -200,10 +199,10 @@ sortedPlayer.forEach((item, index)=>{
 })
 
 const teamData = [
-    {name:"7尔西", desc:"", score:10.8},
-    {name:"上海花生", desc:"", score:9.0},
-    {name:"五花果福瑞", desc:"", score:7.3},
-    {name:"上海曼巴", desc:"", score:8.7},
+    {name:"7尔西", desc:"", score:10.4},
+    {name:"上海花生", desc:"", score:9.1},
+    {name:"五花果福瑞", desc:"", score:8.2},
+    {name:"上海曼巴", desc:"", score:9.7},
 ];
 const sortedTeam = teamData.sort((a,b)=>b.score - a.score);
 const tWrap = document.getElementById("teamWrap");

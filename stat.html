@@ -33,7 +33,7 @@
             margin-bottom:28px;
         }
         .title-logo{
-            width:48px;
+            width:28px;
             height:auto;
         }
         h1{
@@ -51,7 +51,6 @@
         .tab{
             padding:10px 22px;
             background:#fff;
-            border:1px solid #111;
             cursor:pointer;
             transition:0.2s;
         }
@@ -62,7 +61,7 @@
         .tab-content{display:none;}
         .tab-content.show{display:block;}
         .rank-card{
-            border:1px solid #222;
+            border:1px solid #ddd;
         }
         .rank-header{
             display:grid;
@@ -145,7 +144,6 @@ tabs.forEach(t=>{
         document.getElementById(t.dataset.tab).classList.add('show');
     }
 })
-
 const shootData = [
     {name:"陈润东", desc:"7尔西", score:2},
     {name:"徐文博", desc:"7尔西", score:1},
@@ -168,7 +166,6 @@ sortedShoot.forEach((item, index)=>{
     `;
     sWrap.appendChild(div);
 })
-
 const assistData = [
     {name:"李胥霖", desc:"7尔西", score:2},
     {name:"梅一涵", desc:"7尔西", score:1},
@@ -190,10 +187,9 @@ sortedAssist.forEach((item, index)=>{
     `;
     aWrap.appendChild(div);
 })
-
 const saveData = [
-    {name:"邹奕涵", desc:"上海曼巴", score:2},
-    {name:"赵弘毅", desc:"上海曼巴", score:1},
+    {name:"邬奕涵", desc:"上海曼巴", score:2},
+    {name:"赵弘毅", desc:"上海曼巴", score:8},
     {name:"郭圣熙", desc:"五花果福瑞", score:4},
     {name:"王睿涵", desc:"上海曼巴", score:5},
     {name:"郭梓彤", desc:"7尔西", score:2},

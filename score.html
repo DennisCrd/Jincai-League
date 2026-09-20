@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金球奖 | Jincai League</title>
+    <title>积分榜 | Jincai League</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{
@@ -47,7 +47,7 @@
         }
         .rank-header{
             display:grid;
-            grid-template-columns:60px 1fr 160px;
+            grid-template-columns:60px 1fr 140px 120px;
             padding:14px 20px;
             background:#333333;
             color:#fff;
@@ -55,62 +55,54 @@
         }
         .rank-item{
             display:grid;
-            grid-template-columns:60px 1fr 160px;
+            grid-template-columns:60px 1fr 140px 120px;
             padding:16px 20px;
             border-bottom:1px solid #ddd;
             align-items:center;
         }
         .rank-num{font-weight:bold;font-size:18px;}
         .rank-name{font-size:17px;color:#111;}
-        .rank-desc{font-size:14px;color:#555;margin-top:4px;}
+        .rank-record{text-align:center;font-size:16px;color:#111;}
         .rank-score{text-align:center;font-weight:bold;color:#111;font-size:17px;}
-        .rank-header div:last-child{text-align:center;}
+        .rank-header div{text-align:center;}
+        .rank-header div:nth-child(2){text-align:left;}
     </style>
 </head>
 <body>
     <a href="index.html" class="back">← 返回首页</a>
     <div class="title-wrap">
         <img src="images/logo.png" alt="logo" class="title-logo">
-        <h1>金球奖候选榜</h1>
+        <h1>联赛积分榜</h1>
     </div>
     <div class="rank-card">
         <div class="rank-header">
             <div>名次</div>
-            <div>球员（球队）</div>
+            <div>球队</div>
+            <div>胜‑负‑平</div>
             <div>积分</div>
         </div>
-        <div id="goldenWrap"></div>
+        <div id="scoreWrap"></div>
     </div>
 <script>
-const goldenData = [
-    {name:"陈润东", desc:"7尔西", score:20},
-    {name:"李胥霖", desc:"7尔西", score:10},
-    {name:"徐文博", desc:"7尔西", score:10},
-    {name:"梅一涵", desc:"7尔西", score:5},
-    {name:"赵弘毅", desc:"上海曼巴", score:16},
-    {name:"邹奕涵", desc:"上海曼巴", score:4},
-    {name:"李奕宸", desc:"五花果福瑞", score:10},
-    {name:"郭圣熙", desc:"五花果福瑞", score:8},
-    {name:"戎耀", desc:"上海曼巴", score:20},
-    {name:"周湫哲", desc:"五花果福瑞", score:5},
-    {name:"王睿涵", desc:"上海曼巴", score:10},
-    {name:"郭梓彤", desc:"7尔西", score:4},
+const scoreData = [
+    {name:"7尔西", win:1, lose:0, draw:0, point:3},
+    {name:"上海曼巴", win:1, lose:0, draw:1, point:4},
+    {name:"五花果福瑞", win:0, lose:1, draw:0, point:0},
+    {name:"上海花生", win:0, lose:1, draw:1, point:1},
 ];
-const sortedGolden = goldenData.sort((a,b)=>b.score - a.score);
-const gWrap = document.getElementById("goldenWrap");
-sortedGolden.forEach((item, index)=>{
+const sortedScore = scoreData.sort((a,b)=>b.point - a.point);
+const wrap = document.getElementById("scoreWrap");
+sortedScore.forEach((item, index)=>{
     const rank = index + 1;
     const div = document.createElement("div");
     div.className = "rank-item";
     div.innerHTML = `
         <div class="rank-num">${rank}</div>
-        <div>
-            <div class="rank-name">${item.name}</div>
-            <div class="rank-desc">${item.desc}</div>
-        </div>
-        <div class="rank-score">${item.score}</div>
+        <div class="rank-name">${item.name}</div>
+        <div class="rank-record">${item.win}‑${item.lose}‑${item.draw}</div>
+        <div class="rank-score">${item.point}</div>
     `;
-    gWrap.appendChild(div);
+    wrap.appendChild(div);
 })
 </script>
 </body>
