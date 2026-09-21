@@ -145,10 +145,11 @@ tabs.forEach(t=>{
     }
 })
 const shootData = [
-    {name:"陈润东", desc:"7尔西", score:2},
-    {name:"徐文博", desc:"7尔西", score:1},
+    {name:"陈润东", desc:"7尔西", score:1},
+    {name:"徐文博", desc:"7尔西", score:3},
     {name:"戎耀", desc:"上海曼巴", score:2},
     {name:"施奕玮", desc:"五花果福瑞", score:1},
+    {name:"聂子轩", desc:"7尔西", score:1},
 ];
 const sortedShoot = shootData.sort((a,b)=>b.score - a.score);
 const sWrap = document.getElementById("shootWrap");
@@ -168,8 +169,10 @@ sortedShoot.forEach((item, index)=>{
 })
 const assistData = [
     {name:"李胥霖", desc:"7尔西", score:2},
-    {name:"梅一涵", desc:"7尔西", score:1},
+    {name:"梅一涵", desc:"7尔西", score:2},
     {name:"周湫哲", desc:"五花果福瑞", score:1},
+    {name:"徐文博", desc:"7尔西", score:1},
+    {name:"陈润东", desc:"7尔西", score:2},
 ];
 const sortedAssist = assistData.sort((a,b)=>b.score - a.score);
 const aWrap = document.getElementById("assistWrap");
@@ -188,11 +191,12 @@ sortedAssist.forEach((item, index)=>{
     aWrap.appendChild(div);
 })
 const saveData = [
-    {name:"邬奕涵", desc:"上海曼巴", score:2},
-    {name:"赵弘毅", desc:"上海曼巴", score:8},
+    {name:"邬奕涵", desc:"上海花生", score:2},
+    {name:"赵弘毅", desc:"上海花生", score:8},
     {name:"郭圣熙", desc:"五花果福瑞", score:4},
     {name:"王睿涵", desc:"上海曼巴", score:7},
     {name:"郭梓彤", desc:"7尔西", score:2},
+    {name:"田梓煜", desc:"7尔西", score:3},
 ];
 const sortedSave = saveData.sort((a,b)=>b.score - a.score);
 const saveWrap = document.getElementById("saveWrap");
