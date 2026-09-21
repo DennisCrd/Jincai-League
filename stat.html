@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据&金球奖 | Jincai League</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background:#ffffff;
+            color:#111;
+            font-family:'Times New Roman','Noto Serif SC',serif;
+            padding:36px 18px;
+            max-width:820px;
+            margin:0 auto;
+            line-height:1.65;
+        }
+        .back{
+            display:inline-block;
+            margin-bottom:20px;
+            color:#111;
+            text-decoration:none;
+            border-bottom:1px solid #999;
+        }
+        .back:hover{
+            border-bottom-color:#111;
+        }
+        .title-wrap{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            margin-bottom:28px;
+        }
+        .title-logo{
+            width:28px;
+            height:auto;
+        }
+        h1{
+            margin:0;
+            font-size:28px;
+            font-weight:bold;
+            color:#111;
+        }
+        .tab-box{
+            display:flex;
+            gap:10px;
+            margin-bottom:26px;
+            flex-wrap: wrap;
+        }
+        .tab{
+            padding:10px 22px;
+            background:#fff;
+            cursor:pointer;
+            transition:0.2s;
+        }
+        .tab.active{
+            background:#333333;
+            color:#fff;
+        }
+        .tab-content{display:none;}
+        .tab-content.show{display:block;}
+        .rank-card{
+            border:1px solid #ddd;
+        }
+        .rank-header{
+            display:grid;
+            grid-template-columns:60px 1fr 160px;
+            padding:14px 20px;
+            background:#333333;
+            color:#fff;
+            font-weight:bold;
+        }
+        .rank-item{
+            display:grid;
+            grid-template-columns:60px 1fr 160px;
+            padding:16px 20px;
+            border-bottom:1px solid #ddd;
+            align-items:center;
+        }
+        .rank-num{font-weight:bold;font-size:18px;}
+        .rank-name{font-size:17px;color:#111;}
+        .rank-desc{font-size:14px;color:#555;margin-top:4px;}
+        .rank-score{text-align:center;font-weight:bold;color:#111;font-size:17px;}
+        .rank-header div:last-child{text-align:center;}
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back">← 返回首页</a>
+    <div class="tab-box">
+        <div class="tab active" data-tab="shoot">射手榜</div>
+        <div class="tab" data-tab="assist">助攻榜</div>
+        <div class="tab" data-tab="save">扑救榜</div>
+        <div class="tab" data-tab="golden">金球奖</div>
+    </div>
+
+    <div class="tab-content show" id="shoot">
+        <div class="title-wrap">
+            <img src="images/logo.png" alt="logo" class="title-logo">
+            <h1>射手榜</h1>
+        </div>
+        <div class="rank-card">
+            <div class="rank-header">
+                <div>名次</div>
+                <div>球员（球队）</div>
+                <div>进球</div>
+            </div>
+            <div id="shootWrap"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="assist">
+        <div class="title-wrap">
+            <img src="images/logo.png" alt="logo" class="title-logo">
+            <h1>助攻榜</h1>
+        </div>
+        <div class="rank-card">
+            <div class="rank-header">
+                <div>名次</div>
+                <div>球员（球队）</div>
+                <div>助攻</div>
+            </div>
+            <div id="assistWrap"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="save">
+        <div class="title-wrap">
+            <img src="images/logo.png" alt="logo" class="title-logo">
+            <h1>扑救榜</h1>
+        </div>
+        <div class="rank-card">
+            <div class="rank-header">
+                <div>名次</div>
+                <div>球员（球队）</div>
+                <div>扑救</div>
+            </div>
+            <div id="saveWrap"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="golden">
+        <div class="title-wrap">
+            <img src="images/logo.png" alt="logo" class="title-logo">
+            <h1>金球奖积分参考榜</h1>
+        </div>
+        <div class="rank-card">
+            <div class="rank-header">
+                <div>名次</div>
+                <div>球员（球队）</div>
+                <div>金球积分</div>
+            </div>
+            <div id="goldenWrap"></div>
+        </div>
+    </div>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(t=>{
+    t.onclick = ()=>{
+        tabs.forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('show'));
+        document.getElementById(t.dataset.tab).classList.add('show');
+    }
+})
+
+// 原始数据
+const shootData = [
+    {name:"陈润东", desc:"7尔西", score:3},
+    {name:"徐文博", desc:"7尔西", score:3},
+    {name:"戎耀", desc:"上海曼巴", score:2},
+    {name:"施奕玮", desc:"五花果福瑞", score:1},
+    {name:"聂子轩", desc:"7尔西", score:1},
+];
+const assistData = [
+    {name:"李胥霖", desc:"7尔西", score:2},
+    {name:"梅一涵", desc:"7尔西", score:1},
+    {name:"周湫哲", desc:"五花果福瑞", score:1},
+    {name:"陈润东", desc:"7尔西", score:2},
+    {name:"聂子轩", desc:"7尔西", score:1},
+    {name:"徐文博", desc:"7尔西", score:1},
+];
+const saveData = [
+    {name:"邬奕涵", desc:"上海花生", score:2},
+    {name:"赵弘毅", desc:"上海花生", score:8},
+    {name:"郭圣熙", desc:"五花果福瑞", score:4},
+    {name:"刘亦范", desc:"五花果福瑞", score:5},
+    {name:"王睿涵", desc:"上海曼巴", score:7},
+    {name:"郭梓彤", desc:"7尔西", score:2},
+    {name:"田梓煜", desc:"7尔西", score:3},
+];
+
+// --------渲染射手榜--------
+const sortedShoot = shootData.sort((a,b)=>b.score - a.score);
+const sWrap = document.getElementById("shootWrap");
+sortedShoot.forEach((item, index)=>{
+    const rank = index + 1;
+    const div = document.createElement("div");
+    div.className = "rank-item";
+    div.innerHTML = `
+        <div class="rank-num">${rank}</div>
+        <div>
+            <div class="rank-name">${item.name}</div>
+            <div class="rank-desc">${item.desc}</div>
+        </div>
+        <div class="rank-score">${item.score}</div>
+    `;
+    sWrap.appendChild(div);
+})
+
+// --------渲染助攻榜--------
+const sortedAssist = assistData.sort((a,b)=>b.score - a.score);
+const aWrap = document.getElementById("assistWrap");
+sortedAssist.forEach((item, index)=>{
+    const rank = index + 1;
+    const div = document.createElement("div");
+    div.className = "rank-item";
+    div.innerHTML = `
+        <div class="rank-num">${rank}</div>
+        <div>
+            <div class="rank-name">${item.name}</div>
+            <div class="rank-desc">${item.desc}</div>
+        </div>
+        <div class="rank-score">${item.score}</div>
+    `;
+    aWrap.appendChild(div);
+})
+
+// --------渲染扑救榜--------
+const sortedSave = saveData.sort((a,b)=>b.score - a.score);
+const saveWrap = document.getElementById("saveWrap");
+sortedSave.forEach((item, index)=>{
+    const rank = index + 1;
+    const div = document.createElement("div");
+    div.className = "rank-item";
+    div.innerHTML = `
+        <div class="rank-num">${rank}</div>
+        <div>
+            <div class="rank-name">${item.name}</div>
+            <div class="rank-desc">${item.desc}</div>
+        </div>
+        <div class="rank-score">${item.score}</div>
+    `;
+    saveWrap.appendChild(div);
+})
+
+// =========自动计算金球积分：进球10，助攻5，扑救2 =========
+const playerMap = {};
+
+// 录入进球
+shootData.forEach(p=>{
+    if(!playerMap[p.name]) playerMap[p.name] = {name:p.name, desc:p.desc, goal:0, assist:0, save:0};
+    playerMap[p.name].goal = p.score;
+})
+// 录入助攻
+assistData.forEach(p=>{
+    if(!playerMap[p.name]) playerMap[p.name] = {name:p.name, desc:p.desc, goal:0, assist:0, save:0};
+    playerMap[p.name].assist = p.score;
+})
+// 录入扑救
+saveData.forEach(p=>{
+    if(!playerMap[p.name]) playerMap[p.name] = {name:p.name, desc:p.desc, goal:0, assist:0, save:0};
+    playerMap[p.name].save = p.score;
+})
+
+// 计算总分
+const goldenList = Object.values(playerMap).map(item=>{
+    const total = item.goal * 10 + item.assist * 5 + item.save * 2;
+    return {
+        name:item.name,
+        desc:item.desc,
+        score: total
+    }
+}).filter(i=>i.score>0); //过滤0分不显示
+
+// 按金球积分降序
+const sortedGolden = goldenList.sort((a,b)=>b.score - a.score);
+const gWrap = document.getElementById("goldenWrap");
+sortedGolden.forEach((item, index)=>{
+    const rank = index + 1;
+    const div = document.createElement("div");
+    div.className = "rank-item";
+    div.innerHTML = `
+        <div class="rank-num">${rank}</div>
+        <div>
+            <div class="rank-name">${item.name}</div>
+            <div class="rank-desc">${item.desc}</div>
+        </div>
+        <div class="rank-score">${item.score}</div>
+    `;
+    gWrap.appendChild(div);
+})
+</script>
+</body>
+</html>
